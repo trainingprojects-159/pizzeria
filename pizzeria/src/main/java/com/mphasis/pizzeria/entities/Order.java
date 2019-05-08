@@ -28,7 +28,7 @@ private ShoppingCart shoppingCart;
 private PizzaStore pizzaStore;
 
 @OneToMany(mappedBy="order",cascade=CascadeType.ALL)
-private List<PizzaItems> pizzaItems;
+private List<PizzaItems> pizzaItems; 
 
 @ManyToOne
 @JoinColumn(name="custid")
@@ -76,5 +76,22 @@ public void setPizzaItems(List<PizzaItems> pizzaItems) {
 
 
 
-//private enum status;
+private String status;
+
+public Customer getCustomer() {
+	return customer;
+}
+
+public void setCustomer(Customer customer) {
+	this.customer = customer;
+}
+
+public String getStatus() {
+	return status;
+}
+
+public void setStatus(String status) {
+	this.status = status;
+}
+
 }

@@ -28,6 +28,7 @@ public class Customer {
 	
 	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 	private List<Order> order;
+	
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;
 	}
@@ -76,5 +77,4 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }

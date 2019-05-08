@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,6 +23,7 @@ public class PizzaStore {
 	private String password;
 
 	@ManyToOne
+	@JoinColumn(name= "username")
 	private Admin admin;
 	
 	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)
