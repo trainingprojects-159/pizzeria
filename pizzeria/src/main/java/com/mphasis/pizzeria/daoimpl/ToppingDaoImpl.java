@@ -2,7 +2,7 @@ package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import com.mphasis.pizzeria.daos.ToppingDao;
 import com.mphasis.pizzeria.entities.Toppings;
 @Repository
-@Transactional
 public class ToppingDaoImpl implements ToppingDao{
 	@Autowired
 	 SessionFactory sessionFactory;

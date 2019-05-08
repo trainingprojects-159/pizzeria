@@ -2,7 +2,7 @@ package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.mphasis.pizzeria.daos.OrderDao;
 import com.mphasis.pizzeria.entities.Order;
 @Repository
-@Transactional
+
 public class OrderDaoImpl implements OrderDao {
 	@Autowired
 	 SessionFactory sessionFactory;

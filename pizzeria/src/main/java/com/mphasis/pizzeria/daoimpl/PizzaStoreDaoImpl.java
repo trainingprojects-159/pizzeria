@@ -1,11 +1,11 @@
 package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
-import javax.transaction.Transactional;
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import com.mphasis.pizzeria.daos.PizzaStoreDao;
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.entities.PizzaStore;
 @Repository
-@Transactional
+
 public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	@Autowired
 	 SessionFactory sessionFactory;
