@@ -10,3 +10,4 @@ public void deletePizzaStore(String storeid);
 public  List <PizzaStore> getAllPizzaStore(String city);
 
 }
+                
