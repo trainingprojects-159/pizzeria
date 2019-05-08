@@ -2,18 +2,19 @@ package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.transaction.Transactional;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import com.mphasis.pizzeria.daos.AdminDao;
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Admin;
 import com.mphasis.pizzeria.entities.PizzaStore;
-
-
-
+@Repository
+@Transactional
 public class AdminDaoImpl implements AdminDao {
 	@Autowired
 	 SessionFactory sessionFactory;
@@ -25,18 +26,15 @@ public class AdminDaoImpl implements AdminDao {
 	public void insertPizzaStore(PizzaStore pizzastore) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-  System.out.println(pizzastore.getStorename()+"pizzastore values in dao");
-  session.save(pizzastore);
-  tr.commit();
+      System.out.println(pizzastore.getStorename()+"pizzastore values in dao");
+       session.save(pizzastore);
+            tr.commit();
   
-
 	}
 
 	public void updatePizzaStore(PizzaStore pizzastore) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		PizzaStore p=(PizzaStore) session.get(PizzaStore.class, pizzastore.getStoreid());
-		pizzastore.setState("state");
 		  session.update(pizzastore);
 		  tr.commit();	
 	}
@@ -50,34 +48,23 @@ public class AdminDaoImpl implements AdminDao {
 
 	}
 
-	public List<PizzaStore> getAllPizzaStore(String city) {
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		  Criteria cri=session.createCriteria(PizzaStore.class);
-		  cri.add(Restrictions.eq("city",city ));
-		  List<PizzaStore> pizzaStore=cri.list();
-		  tr.commit();
-		return null;
-	}
-	public void acceptOrder(String orderid) {
-		// TODO Auto-generated method stub
+	
+	public Admin login(String username, String password) {
+		Session session=(sessionFactory).openSession();
 		
-	}
-	public void cancelOrder(String orderid) {
-		// TODO Auto-generated method stub
+	Query query= session.createQuery("from Admin where username=:username and password=:password");
+		query.setParameter("username", username);
+		query.setParameter("password",password);
+		Admin admin=(Admin) query.uniqueResult();
+	     return admin;
 		
-	}
-	public void login(String username, String password) {
-		// TODO Auto-generated method stub
-		
-	}
-	public List<Order> getAllOrders() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	public List<PizzaStore> getAllPizzaStore() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=(sessionFactory).openSession();
+		Transaction tr=session.beginTransaction();
+		 List<PizzaStore> pizzastores=session.createCriteria(PizzaStore.class).list();
+		  tr.commit();
+		return pizzastores;
 	}
-
+	
 }

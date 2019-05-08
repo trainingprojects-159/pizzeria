@@ -1,17 +1,19 @@
 package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
-
-import org.hibernate.Criteria;
+import javax.transaction.Transactional;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.PizzaStoreDao;
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.entities.PizzaStore;
-
+@Repository
+@Transactional
 public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	@Autowired
 	 SessionFactory sessionFactory;
@@ -32,7 +34,6 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	public void updatePizzaItems(PizzaItems pizzaItems) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		PizzaStore p=(PizzaStore) session.get(PizzaItems.class, pizzaItems.getPizzaid());
 		  session.update(pizzaItems);
 		  tr.commit();
 	}
@@ -40,7 +41,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	public void deletePizzaItems(String pizzaid) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		PizzaItems pizzaItems=(PizzaItems) session.get(PizzaItems.class, pizzaid);
+		PizzaStore pizzaItems=(PizzaStore) session.get(PizzaStore.class, pizzaid);
 		  session.delete(pizzaItems);
 		  tr.commit();
 
@@ -49,23 +50,22 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	public List<PizzaItems> getAllPizzaItems() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		  Criteria cri=session.createCriteria(PizzaItems.class);
-		  
-		  List<PizzaItems> pizzaItems=cri.list();
+		 List<PizzaItems> pizzaitems = session.createCriteria(PizzaStore.class).list();
 		  tr.commit();
-		return null;
-	}
-	public void login(String username, String password) {
-		// TODO Auto-generated method stub
+		return pizzaitems;
 		
 	}
-	public void acceptOrder(String orderid) {
-		// TODO Auto-generated method stub
+	public PizzaStore login(String storeid, String password) {
+		Session session=(sessionFactory).openSession();
+		
+		Query query= session.createQuery("from PizzaStore where storeid=:storeid and password=:password");
+			query.setParameter("storeid", storeid);
+			query.setParameter("password",password);
+			PizzaStore pizzaStore=(PizzaStore) query.uniqueResult();
+		     return pizzaStore;
+		
 		
 	}
-	public void cancelOrder(String orderid) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
