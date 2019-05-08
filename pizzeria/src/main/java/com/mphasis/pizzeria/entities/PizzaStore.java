@@ -19,6 +19,7 @@ public class PizzaStore {
 	private String storename;
 	private String city;
 	private String state;
+	private String password;
 
 	@ManyToOne
 	private Admin admin;
@@ -72,6 +73,12 @@ public class PizzaStore {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 
