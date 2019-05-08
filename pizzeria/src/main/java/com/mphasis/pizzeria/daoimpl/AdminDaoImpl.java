@@ -75,5 +75,9 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public List<PizzaStore> getAllPizzaStore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

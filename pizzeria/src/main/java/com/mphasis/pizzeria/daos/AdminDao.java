@@ -7,7 +7,7 @@ public void login(String username,String password);
 public void addPizzaStore(PizzaStore pizzastore);
 public void updatePizzaStore(PizzaStore pizzastore);
 public void deletePizzaStore(String storeid);
-public  List <PizzaStore> getAllPizzaStore(String city);
+public  List<PizzaStore> getAllPizzaStore();
 
 }
                 
