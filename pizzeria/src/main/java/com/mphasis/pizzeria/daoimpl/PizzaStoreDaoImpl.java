@@ -20,7 +20,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	{
 		this.sessionFactory=sessionFactory;
 	}	 
-	public void addPizzaItems(PizzaItems pizzaItems) {
+	public void insertPizzaItems(PizzaItems pizzaItems) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
   System.out.println(pizzaItems.getPizzaname()+"pizzaItems values in dao");

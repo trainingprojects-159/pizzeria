@@ -22,7 +22,7 @@ public class AdminDaoImpl implements AdminDao {
 	{
 		this.sessionFactory=sessionFactory;
 	}	 
-	public void addPizzaStore(PizzaStore pizzastore) {
+	public void insertPizzaStore(PizzaStore pizzastore) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
   System.out.println(pizzastore.getStorename()+"pizzastore values in dao");
