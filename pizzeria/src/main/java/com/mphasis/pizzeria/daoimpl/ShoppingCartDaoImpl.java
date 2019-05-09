@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.ShoppingCartDao;
 import com.mphasis.pizzeria.entities.ShoppingCart;
 
+@Repository
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
 	@Autowired
 	 SessionFactory sessionFactory;
