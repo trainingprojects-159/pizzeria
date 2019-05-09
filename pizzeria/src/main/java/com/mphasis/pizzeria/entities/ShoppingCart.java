@@ -4,13 +4,28 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.pizzeria.util.StringPrefixedSequenceIdGenerator;
 @Entity
 public class ShoppingCart {
 @Id
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartid_seq")
+@GenericGenerator(
+    name = "cartid_seq", 
+    strategy = "com.mphasis.pizzeria.util.StringPrefixedSequenceIdGenerator", 
+    parameters = {
+        @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+        @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "FI"),
+        @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 private String cartid;
 private double unitprice;
 private int quantity;

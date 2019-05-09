@@ -1,16 +1,15 @@
-package com.mphasis.pizzeria.daos;
+package com.mphasis.pizzeria.services;
 
 import java.util.List;
-
 
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.entities.PizzaStore;
 
-public interface PizzaStoreDao {
+public interface PizzaStoreService {
 	public PizzaStore login(String storeid,String password);
-	public void insertPizzaStore(PizzaStore pizzastore);
-	public void updatePizzaStore(PizzaStore pizzastore);
-	public void deletePizzaStore(String storeid);
+	public void addPizzaStore(PizzaStore pizzastore);
+	public void editPizzaStore(PizzaStore pizzastore);
+	public void removePizzaStore(String storeid);
 	public  List<PizzaStore> getAllPizzaStore();
 	
 }

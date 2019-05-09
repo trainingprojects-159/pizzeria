@@ -5,17 +5,32 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.mphasis.pizzeria.util.StringPrefixedSequenceIdGenerator;
+
 
 @Entity
 public class PizzaStore {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
+    @GenericGenerator(
+        name = "order_seq", 
+        strategy = "com.mphasis.pizzeria.util.StringPrefixedSequenceIdGenerator", 
+        parameters = {
+            @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "4"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "FI"),
+            @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 	private String storeid;
 	private String storename;
 	private String city;
@@ -29,7 +44,7 @@ public class PizzaStore {
 	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)
 	private List<Order> order;
 	
-	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)//enum has to create
+	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)
 	private List<PizzaItems> pizzaItems;
 	
 	public List<PizzaItems> getPizzaItems() {

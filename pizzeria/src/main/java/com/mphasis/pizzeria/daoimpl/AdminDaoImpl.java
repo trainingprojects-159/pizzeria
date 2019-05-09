@@ -20,31 +20,7 @@ public class AdminDaoImpl implements AdminDao {
 	{
 		this.sessionFactory=sessionFactory;
 	}	 
-	public void insertPizzaStore(PizzaStore pizzastore) {
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-      System.out.println(pizzastore.getStorename()+"pizzastore values in dao");
-       session.save(pizzastore);
-            tr.commit();
-  
-	}
-
-	public void updatePizzaStore(PizzaStore pizzastore) {
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		  session.update(pizzastore);
-		  tr.commit();	
-	}
-
-	public void deletePizzaStore(String storeid) {
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		PizzaStore pizzastore=(PizzaStore) session.get(PizzaStore.class, storeid);
-		  session.delete(pizzastore);
-		  tr.commit();
-
-	}
-
+	
 	
 	public Admin login(String username, String password) {
 		Session session=(sessionFactory).openSession();
@@ -56,12 +32,6 @@ public class AdminDaoImpl implements AdminDao {
 	     return admin;
 		
 	}
-	public List<PizzaStore> getAllPizzaStore() {
-		Session session=(sessionFactory).openSession();
-		Transaction tr=session.beginTransaction();
-		 List<PizzaStore> pizzastores=session.createCriteria(PizzaStore.class).list();
-		  tr.commit();
-		return pizzastores;
-	}
+	
 	
 }
