@@ -18,6 +18,7 @@ import com.mphasis.pizzeria.services.PizzaItemsService;
 
 
 @RestController
+@RequestMapping("/pizzastore")
 public class PizzaStoreController {
 	
 	
@@ -64,13 +65,13 @@ public class PizzaStoreController {
 	OrderService orderService;
 	
 	
-	@RequestMapping(value="/orders/get",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void getOrder(@PathVariable("orderid")String orderid)
-	{
-		
-		this.orderService.getOrder(orderid);
-		
-	}
+//	@RequestMapping(value="/orders/get",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+//	public void getOrder(@PathVariable("orderid")String orderid)
+//	{
+//		
+//		this.orderService.getOrder(orderid);
+//		
+//	}
 
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editOrder(@RequestBody Order o)

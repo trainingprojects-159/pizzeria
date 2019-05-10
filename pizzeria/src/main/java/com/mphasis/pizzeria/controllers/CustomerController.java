@@ -23,6 +23,7 @@ import com.mphasis.pizzeria.services.ShoppingCartService;
 import com.mphasis.pizzeria.services.ToppingService;
 
 @RestController
+@RequestMapping("/customer")
 public class CustomerController {
     
 	@Autowired

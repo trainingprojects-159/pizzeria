@@ -21,6 +21,7 @@ import com.mphasis.pizzeria.services.PizzaStoreService;
 
 
 @RestController
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	AdminService adminService;
