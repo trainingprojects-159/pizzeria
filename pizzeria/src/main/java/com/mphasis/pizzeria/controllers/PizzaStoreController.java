@@ -58,19 +58,16 @@ public class PizzaStoreController {
 		this.pizzaItemsService.editPizzaItems(pi);
 		
 	}
-	
+	@RequestMapping(value="/pizzaItems/{pizzaid}", method=RequestMethod.GET)
+	  public PizzaItems getByPizzaId(@PathVariable("pizzaid")String pizzaid) throws BusinessException
+	  {
+	  	
+	  	return this.pizzaItemsService.getById(pizzaid);
+	  }
 	
 	@Autowired
 	OrderService orderService;
 	
-	
-//	@RequestMapping(value="/orders/get",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-//	public void getOrder(@PathVariable("orderid")String orderid)
-//	{
-//		
-//		this.orderService.getOrder(orderid);
-//		
-//	}
 
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editOrder(@RequestBody Orders o)throws BusinessException
@@ -79,7 +76,12 @@ public class PizzaStoreController {
 		
 	}
 	
-	
+	@RequestMapping(value="/orders/{orderid}", method=RequestMethod.GET)
+	  public Orders getByOrderId(@PathVariable("orderid")String orderid) throws BusinessException
+	  {
+	  	
+	  	return this.orderService.getByOrderId(orderid);
+	  }
 	
 
 }

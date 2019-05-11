@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mphasis.pizzeria.entities.Customer;
 import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaItems;
+import com.mphasis.pizzeria.entities.PizzaStore;
 import com.mphasis.pizzeria.entities.ShoppingCart;
 import com.mphasis.pizzeria.entities.Toppings;
 import com.mphasis.pizzeria.exception.BusinessException;
@@ -73,6 +74,12 @@ public class CustomerController {
 		
 		this.customerService.register(customer);
 	}
+	 @RequestMapping(value="/{custid}", method=RequestMethod.GET)
+	  public Customer getByCustId(@PathVariable("custid")String custid) throws BusinessException
+	  {
+	  	
+	  	return this.customerService.getByCustId(custid);
+	  }
 	
 	@RequestMapping(value="/shoppingcart",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<ShoppingCart> listShoppingCarts() throws BusinessException
@@ -98,6 +105,12 @@ public class CustomerController {
 	{
 		this.shoppingCartService.editToCart(c);	
 	}
+	@RequestMapping(value="/shoppingcart/{cartid}", method=RequestMethod.GET)
+	  public ShoppingCart getByCartId(@PathVariable("cartid")String cartid) throws BusinessException
+	  {
+	  	
+	  	return this.shoppingCartService.getByCartId(cartid);
+	  }
 	
 	@RequestMapping(value="/toppings",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Toppings> listToppings() throws BusinessException
@@ -122,6 +135,12 @@ public class CustomerController {
 	{
 		this.toppingService.editTopping(topping);	
 	}
+	@RequestMapping(value="/toppings/{toppingid}", method=RequestMethod.GET)
+	  public Toppings getByToppingId(@PathVariable("toppingid")String toppingid) throws BusinessException
+	  {
+	  	
+	  	return this.toppingService.getByToppingId(toppingid);
+	  }
 	
 	@RequestMapping(value="/orders",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Orders> listOrders() throws BusinessException
@@ -145,12 +164,22 @@ public class CustomerController {
 	public void editOrder(@RequestBody Orders order) throws BusinessException{
 		this.orderService.editOrder(order);	
 	}
-
+	@RequestMapping(value="/orders/{orderid}", method=RequestMethod.GET)
+	  public Orders getByOrderId(@PathVariable("orderid")String orderid) throws BusinessException
+	  {
+	  	
+	  	return this.orderService.getByOrderId(orderid);
+	  }
 	@RequestMapping(value="/pizzaItems",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public  List<PizzaItems> listPizzaItems() throws BusinessException{
 			return pizzaItemsService.getAllPizzaItems();
 	}
-	
+	@RequestMapping(value="/pizzaItems/{pizzaid}", method=RequestMethod.GET)
+	  public PizzaItems getByPizzaId(@PathVariable("pizzaid")String pizzaid) throws BusinessException
+	  {
+	  	
+	  	return this.pizzaItemsService.getById(pizzaid);
+	  }
 	
 }
 

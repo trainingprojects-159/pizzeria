@@ -21,6 +21,7 @@ import com.mphasis.pizzeria.services.OrderService;
 import com.mphasis.pizzeria.services.PizzaStoreService;
 
 
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -80,7 +81,18 @@ public class AdminController {
 	public void editpizzastore(@RequestBody PizzaStore p) throws BusinessException {
         this.pizzaStoreService.editPizzaStore(p);		
 	}
-	
+	  @RequestMapping(value="pizzastore/{storeid}", method=RequestMethod.GET)
+	  public PizzaStore getByStoreId(@PathVariable("storeid")String storeid) throws BusinessException
+	  {
+	  	
+	  	return this.pizzaStoreService.getByStoreId(storeid);
+	  }
+	  @RequestMapping(value="pizzastore/{manager_name}", method=RequestMethod.GET)
+	  public PizzaStore getByManagerName(@PathVariable("manager_name")String manager_name) throws BusinessException
+	  {
+	  	
+	  	return this.pizzaStoreService.getByManagerName(manager_name);
+	  }
 	  
 	  @RequestMapping(value="/order",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	  public List<Orders> listOrders() throws BusinessException
@@ -97,7 +109,12 @@ public class AdminController {
 	  public void updateOrder(@RequestBody Orders order) throws BusinessException {
 		  this.orderService.editOrder(order);	
 	  }
-
+	  @RequestMapping(value="order/{orderid}", method=RequestMethod.GET)
+	  public Orders getByOrderId(@PathVariable("orderid")String orderid) throws BusinessException
+	  {
+	  	
+	  	return this.orderService.getByOrderId(orderid);
+	  }
 
 }
 

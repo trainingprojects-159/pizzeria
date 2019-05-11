@@ -19,20 +19,15 @@ public class ToppingServiceImpl implements ToppingService {
 	public void addTopping(Toppings topping) throws BusinessException{
 		System.out.println("Order values in service"+topping.getToppingid());
 		toppingDao.insertTopping(topping);
-
 	}
-
 	public void modifyTopping(Toppings topping) throws BusinessException{
 		toppingDao.updateTopping(topping);
 
 	}
-
 	public void removeTopping(String toppingid)throws BusinessException {
 		toppingDao.deleteTopping(toppingid);
 
 	}
-
-	
 	public void editTopping(Toppings topping) throws BusinessException{
 		toppingDao.updateTopping(topping);
 	}
