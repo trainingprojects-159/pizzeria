@@ -33,7 +33,7 @@ public void setSessionFactory(SessionFactory sessionFactory)
 		return customer;
 	}
 
-	public void register(Customer customer) {
+	public void register(Customer customer)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		session.save(customer);
@@ -42,7 +42,7 @@ public void setSessionFactory(SessionFactory sessionFactory)
 	}
 
 
-	public Customer getByCustId(String custid) {
+	public Customer getByCustId(String custid)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Customer customer=(Customer) session.get(Customer.class, custid);

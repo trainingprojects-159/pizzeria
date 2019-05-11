@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mphasis.pizzeria.entities.Admin;
 import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaStore;
+import com.mphasis.pizzeria.exception.BusinessException;
 import com.mphasis.pizzeria.services.AdminService;
 import com.mphasis.pizzeria.services.OrderService;
 import com.mphasis.pizzeria.services.PizzaStoreService;
@@ -45,7 +46,7 @@ public class AdminController {
 	}
 	  
 	@RequestMapping(value="/login/{username}/{password}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Admin login(@PathVariable("username")String pname,@PathVariable("password")String pwd) {
+	public Admin login(@PathVariable("username")String pname,@PathVariable("password")String pwd) throws BusinessException {
 		
 		Admin user=adminService.login(pname,pwd);
 		return user;
@@ -59,41 +60,41 @@ public class AdminController {
 	
 	
 	  @RequestMapping(value="/pizzastore",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-		public List<PizzaStore> listPizzaStores()
+		public List<PizzaStore> listPizzaStores() throws BusinessException
 		{	
 			return pizzaStoreService.getAllPizzaStore();
 	    }
 	  @RequestMapping(value="/pizzastore/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-		public void  addPizzaStore(@RequestBody PizzaStore pizzastore)
+		public void  addPizzaStore(@RequestBody PizzaStore pizzastore) throws BusinessException
 		{
 				this.pizzaStoreService.addPizzaStore(pizzastore);
 				
 		}
 
 	@RequestMapping(value="/pizzastore/{storeid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void removePizzaStore(@PathVariable ("storeid") String storeid) {
+	  public void removePizzaStore(@PathVariable ("storeid") String storeid) throws BusinessException {
 		  this.pizzaStoreService.removePizzaStore(storeid);
 	  }
 	
 	  @RequestMapping(value="/pizzastore/edit",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editpizzastore(@RequestBody PizzaStore p) {
+	public void editpizzastore(@RequestBody PizzaStore p) throws BusinessException {
         this.pizzaStoreService.editPizzaStore(p);		
 	}
 	
 	  
 	  @RequestMapping(value="/order",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	  public List<Orders> listOrders()
+	  public List<Orders> listOrders() throws BusinessException
 	  {	
 		  return orderService.getAllOrders();
 	  }
 
 	  @RequestMapping(value="/order/{orderid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void removeOrder(@PathVariable ("orderid") String orderid) {
+	  public void removeOrder(@PathVariable ("orderid") String orderid) throws BusinessException {
 		  this.orderService.removeOrder(orderid);
 	  }
 
 	  @RequestMapping(value="/order/edit",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void updateOrder(@RequestBody Orders order) {
+	  public void updateOrder(@RequestBody Orders order) throws BusinessException {
 		  this.orderService.editOrder(order);	
 	  }
 

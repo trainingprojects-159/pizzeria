@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.OrderDao;
 import com.mphasis.pizzeria.entities.Orders;
+import com.mphasis.pizzeria.exception.BusinessException;
 
 @Repository
 
@@ -24,7 +25,7 @@ public class OrderDaoImpl implements OrderDao {
 		this.sessionFactory=sessionFactory;
 	}	
 
-	public void createOrder(Orders order) {
+	public void createOrder(Orders order)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
       System.out.println(order.getOrderid()+"order values in dao");
@@ -33,7 +34,7 @@ public class OrderDaoImpl implements OrderDao {
 
 	}
 
-	public void updateOrder(Orders order) {
+	public void updateOrder(Orders order)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  session.update(order);
@@ -42,7 +43,7 @@ public class OrderDaoImpl implements OrderDao {
 
 	}
 
-	public void deleteOrder(String orderid) {
+	public void deleteOrder(String orderid)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Orders order=(Orders) session.get(Orders.class, orderid);
@@ -51,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
 
 	}
 
-	public List<Orders> getAllOrders() {
+	public List<Orders> getAllOrders() throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		 List<Orders> order=session.createQuery("from Orders",Orders.class).list();
@@ -60,7 +61,7 @@ public class OrderDaoImpl implements OrderDao {
 		
 	}
 
-	public Orders getByOrderId(String orderid) {
+	public Orders getByOrderId(String orderid) throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  Orders order=(Orders) session.get(Orders.class, orderid);
