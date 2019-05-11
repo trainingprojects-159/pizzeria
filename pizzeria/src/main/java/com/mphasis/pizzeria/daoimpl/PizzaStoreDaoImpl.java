@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.PizzaStoreDao;
 import com.mphasis.pizzeria.entities.PizzaStore;
+import com.mphasis.pizzeria.exception.BusinessException;
 @Repository
 
 public class PizzaStoreDaoImpl implements PizzaStoreDao {
@@ -21,7 +22,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 	{
 		this.sessionFactory=sessionFactory;
 	}	
-	public PizzaStore login(String storeid, String password) {
+	public PizzaStore login(String storeid, String password)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		
 		Query query= session.createQuery("from PizzaStore where storeid=:storeid and password=:password");
@@ -32,7 +33,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 		
 		
 	}
-	public void insertPizzaStore(PizzaStore pizzastore) {
+	public void insertPizzaStore(PizzaStore pizzastore)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
       System.out.println(pizzastore.getStorename()+"pizzastore values in dao");
@@ -41,14 +42,14 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
   
 	}
 
-	public void updatePizzaStore(PizzaStore pizzastore) {
+	public void updatePizzaStore(PizzaStore pizzastore) throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  session.update(pizzastore);
 		  tr.commit();	
 	}
 
-	public void deletePizzaStore(String storeid) {
+	public void deletePizzaStore(String storeid) throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		PizzaStore pizzastore=(PizzaStore) session.get(PizzaStore.class, storeid);
@@ -56,14 +57,14 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 		  tr.commit();
 
 	}
-	public List<PizzaStore> getAllPizzaStore() {
+	public List<PizzaStore> getAllPizzaStore() throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		 List<PizzaStore> pizzastores=session.createQuery("from PizzaStore",PizzaStore.class).list();
 		  tr.commit();
 		return pizzastores;
 	}
-	public PizzaStore getByStoreId(String storeid) {
+	public PizzaStore getByStoreId(String storeid)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		PizzaStore pizzaStore=(PizzaStore) session.get(PizzaStore.class, storeid);
@@ -71,7 +72,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 		return pizzaStore;
 		
 	}
-	public PizzaStore getByManagerName(String manager_name) {
+	public PizzaStore getByManagerName(String manager_name)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		PizzaStore pizzaStore=(PizzaStore) session.get(PizzaStore.class, manager_name);

@@ -37,7 +37,7 @@ OrderDao orderDao;
 		return orderDao.getAllOrders();
 	}
 
-	public Orders getByOrderId(String orderid) throws BusinessExceptions{
+	public Orders getByOrderId(String orderid) throws BusinessException{
 	
 		return orderDao.getByOrderId(orderid);
 	}

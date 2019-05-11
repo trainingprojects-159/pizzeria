@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.ToppingDao;
 import com.mphasis.pizzeria.entities.Toppings;
+import com.mphasis.pizzeria.exception.BusinessException;
 @Repository
 public class ToppingDaoImpl implements ToppingDao{
 	@Autowired
@@ -21,7 +22,7 @@ public class ToppingDaoImpl implements ToppingDao{
 	{
 		this.sessionFactory=sessionFactory;
 	}	
-	public void insertTopping(Toppings topping) {
+	public void insertTopping(Toppings topping)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
       System.out.println(topping.getToppingname()+"toppings values in dao");
@@ -29,7 +30,7 @@ public class ToppingDaoImpl implements ToppingDao{
             tr.commit();
 	}
 
-	public void updateTopping(Toppings topping) {
+	public void updateTopping(Toppings topping)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  session.update(topping);
@@ -37,7 +38,7 @@ public class ToppingDaoImpl implements ToppingDao{
 		
 	}
 
-	public void deleteTopping(String toppingid) {
+	public void deleteTopping(String toppingid)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Toppings toppings=(Toppings) session.get(Toppings.class, toppingid);
@@ -46,7 +47,7 @@ public class ToppingDaoImpl implements ToppingDao{
 
 	}
 
-	public List<Toppings> getAllToppings() {
+	public List<Toppings> getAllToppings()throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		 List<Toppings> toppings=session.createQuery("from Toppings",Toppings.class).list();
@@ -54,7 +55,7 @@ public class ToppingDaoImpl implements ToppingDao{
 		return toppings;
 		
 	}
-	public Toppings getByToppingId(String toppingid) {
+	public Toppings getByToppingId(String toppingid) throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		Toppings toppings=(Toppings) session.get(Toppings.class, toppingid);

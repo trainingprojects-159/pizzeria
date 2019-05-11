@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mphasis.pizzeria.daos.PizzaItemsDao;
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.entities.PizzaStore;
+import com.mphasis.pizzeria.exception.BusinessException;
 @Repository
 public class PizzaItemsDaoImpl implements PizzaItemsDao {
 	@Autowired
@@ -20,7 +21,7 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 	{
 		this.sessionFactory=sessionFactory;
 	}	 
-	public void insertPizzaItems(PizzaItems pizzaItems) {
+	public void insertPizzaItems(PizzaItems pizzaItems)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
  System.out.println(pizzaItems.getPizzaname()+"pizzaItems values in dao");
@@ -29,14 +30,14 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 
 	}
 
-	public void updatePizzaItems(PizzaItems pizzaItems) {
+	public void updatePizzaItems(PizzaItems pizzaItems)throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  session.update(pizzaItems);
 		  tr.commit();
 	}
 
-	public void deletePizzaItems(String pizzaid) {
+	public void deletePizzaItems(String pizzaid)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		PizzaItems pizzaItems=(PizzaItems) session.get(PizzaItems.class, pizzaid);
@@ -45,7 +46,7 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 
 	}
 
-	public List<PizzaItems> getAllPizzaItems() {
+	public List<PizzaItems> getAllPizzaItems() throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		 List<PizzaItems> pizzaitems = session.createQuery("from PizzaItems",PizzaItems.class).list();
@@ -53,7 +54,7 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 		return pizzaitems;
 		
 	}
-	public PizzaItems getById(String pizzaid) {
+	public PizzaItems getById(String pizzaid) throws BusinessException{
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		PizzaItems pizzaItems=(PizzaItems) session.get(PizzaItems.class, pizzaid);

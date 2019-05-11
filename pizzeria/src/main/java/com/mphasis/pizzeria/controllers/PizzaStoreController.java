@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaItems;
+import com.mphasis.pizzeria.exception.BusinessException;
 import com.mphasis.pizzeria.services.OrderService;
 import com.mphasis.pizzeria.services.PizzaItemsService;
-
-
 
 @RestController
 @RequestMapping("/pizzastore")
@@ -28,13 +27,13 @@ public class PizzaStoreController {
 
 	
 
-	public void setPizzaItemsService(PizzaItemsService pizzaItemsService) {
+	public void setPizzaItemsService(PizzaItemsService pizzaItemsService)throws BusinessException {
 		this.pizzaItemsService = pizzaItemsService;
 	}
 
 
 	@RequestMapping(value="/pizzaitems",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<PizzaItems> listPizzaItems()
+	public List<PizzaItems> listPizzaItems()throws BusinessException
 	{
 		
 		return pizzaItemsService.getAllPizzaItems();
@@ -42,19 +41,19 @@ public class PizzaStoreController {
 	}
 	@RequestMapping(value="/pizzaitems/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 
-		public void  addPizzaItems(@RequestBody PizzaItems pi)
+		public void  addPizzaItems(@RequestBody PizzaItems pi)throws BusinessException
 		{
 				this.pizzaItemsService.addPizzaItems(pi);
 				
 		}
 	@RequestMapping(value="/pizzaitems/{storeid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void removePizzaItems(@PathVariable("pizzaid")String pizzaid)
+	public void removePizzaItems(@PathVariable("pizzaid")String pizzaid)throws BusinessException
 	{
 			this.pizzaItemsService.removePizzaItems(pizzaid);
 		
 	}
 	@RequestMapping(value="/pizzaitems/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editPizzaItems(@RequestBody PizzaItems pi)
+	public void editPizzaItems(@RequestBody PizzaItems pi)throws BusinessException
 	{
 		this.pizzaItemsService.editPizzaItems(pi);
 		
@@ -74,7 +73,7 @@ public class PizzaStoreController {
 //	}
 
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editOrder(@RequestBody Orders o)
+	public void editOrder(@RequestBody Orders o)throws BusinessException
 	{
 		this.orderService.editOrder(o);
 		
