@@ -8,5 +8,5 @@ public interface ShoppingCartService {
 	public void addToCart(ShoppingCart shoppingcart);
 	 public void editToCart(ShoppingCart shoppingcart);
 	 public void removeToCart(String cartid);
-	 public List<ShoppingCart> getAllCarts();
+	 public List<ShoppingCart> getShoppingCarts();
 }

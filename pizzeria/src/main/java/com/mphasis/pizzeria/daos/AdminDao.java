@@ -7,5 +7,6 @@ import com.mphasis.pizzeria.entities.PizzaStore;
 public interface AdminDao {
 	
 public  Admin login(String username,String password);
+
 }
                 

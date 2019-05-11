@@ -10,23 +10,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectHelper 
 {
-	@Before("execution(* com.mphasis.training.*.*.*(..))")
+	@Before("execution(* com.mphasis.pizzeria.*.*.*(..))")
 	public void beforeMethods(JoinPoint joinpoint)
 	{
-		
-		
 			System.out.println("before"+joinpoint.getSignature());
-			System.out.println(joinpoint.getSignature().getName());
-			
-		
+			System.out.println(joinpoint.getSignature().getName());		
 	}
-	@After("execution(* com.mphasis.training.*.*.*(..))")
+	@After("execution(* com.mphasis.pizzeria.*.*.*(..))")
 	public void afterMethods(JoinPoint joinpoint)
 	{
 		System.out.println("before"+joinpoint.getSignature());
 		System.out.println(joinpoint.getSignature().getName());
 	}
-	
-	
 
 }

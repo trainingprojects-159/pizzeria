@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.OrderDao;
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 @Repository
 
 public class OrderDaoImpl implements OrderDao {
@@ -23,7 +23,7 @@ public class OrderDaoImpl implements OrderDao {
 		this.sessionFactory=sessionFactory;
 	}	
 
-	public void createOrder(Order order) {
+	public void createOrder(Orders order) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
       System.out.println(order.getOrderid()+"order values in dao");
@@ -32,10 +32,11 @@ public class OrderDaoImpl implements OrderDao {
 
 	}
 
-	public void updateOrder(Order order) {
+	public void updateOrder(Orders order) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
 		  session.update(order);
+		  
 		  tr.commit();	
 
 	}
@@ -43,25 +44,16 @@ public class OrderDaoImpl implements OrderDao {
 	public void deleteOrder(String orderid) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		Order order=(Order) session.get(Order.class, orderid);
+		Orders order=(Orders) session.get(Orders.class, orderid);
 		  session.delete(order);
 		  tr.commit();	
 
 	}
 
-	public void acceptOrder(String orderid) {
+	public List<Orders> getAllOrders() {
 		Session session=(sessionFactory).openSession();
 		Transaction tr=session.beginTransaction();
-		Order order=(Order) session.get(Order.class, orderid);
-		  session.save(order);
-		  tr.commit();	
-
-	}
-
-	public List<Order> getAllOrders() {
-		Session session=(sessionFactory).openSession();
-		Transaction tr=session.beginTransaction();
-		 List<Order> order=session.createCriteria(Order.class).list();
+		 List<Orders> order=session.createCriteria(Orders.class).list();
 		  tr.commit();
 		return order;
 		

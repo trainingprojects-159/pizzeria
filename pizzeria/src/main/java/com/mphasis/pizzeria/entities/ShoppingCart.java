@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,61 +28,66 @@ public class ShoppingCart {
         @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "FI"),
         @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 private String cartid;
-private double unitprice;
+private double price;
 private int quantity;
-private double totalprice;
-@OneToMany(mappedBy="shoppingCart",cascade=CascadeType.ALL)
+@OneToOne
+private Customer customer;
+
+@OneToMany(cascade=CascadeType.ALL)
 private List<PizzaItems> pizzaitems;
 
 @OneToMany(mappedBy="shoppingCart",cascade=CascadeType.ALL)
-private List<Order> order;
+private List<Orders> order;
 
-@OneToOne
-@JoinColumn(name="custid")
-private Customer customer;
-
-public List<PizzaItems> getPizzaitems() {
-	return pizzaitems;
-}
-public void setPizzaitems(List<PizzaItems> pizzaitems) {
-	this.pizzaitems = pizzaitems;
-}
-public List<Order> getOrder() {
-	return order;
-}
-public void setOrder(List<Order> order) {
-	this.order = order;
-}
 public String getCartid() {
 	return cartid;
 }
+
 public void setCartid(String cartid) {
 	this.cartid = cartid;
 }
-public double getUnitprice() {
-	return unitprice;
+
+public double getPrice() {
+	return price;
 }
-public void setUnitprice(double unitprice) {
-	this.unitprice = unitprice;
+
+public void setPrice(double price) {
+	this.price = price;
 }
+
 public int getQuantity() {
 	return quantity;
 }
+
 public void setQuantity(int quantity) {
 	this.quantity = quantity;
-}
-public double getTotalprice() {
-	return totalprice;
-}
-public void setTotalprice(double totalprice) {
-	this.totalprice = totalprice;
 }
 
 public Customer getCustomer() {
 	return customer;
 }
+
 public void setCustomer(Customer customer) {
 	this.customer = customer;
 }
+
+public List<PizzaItems> getPizzaitems() {
+	return pizzaitems;
+}
+
+public void setPizzaitems(List<PizzaItems> pizzaitems) {
+	this.pizzaitems = pizzaitems;
+}
+
+public List<Orders> getOrder() {
+	return order;
+}
+
+public void setOrder(List<Orders> order) {
+	this.order = order;
+}
+
+
+
 
 }

@@ -2,12 +2,12 @@ package com.mphasis.pizzeria.services;
 
 import java.util.List;
 
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 
 public interface OrderService {
-	public  void insertOrder(Order order);
-	public void editOrder(Order order);
+	public  void insertOrder(Orders order);
+	public void editOrder(Orders order);
 	public void removeOrder(String orderid);
-	public void getOrder(String orderid);
-	public  List<Order> getAllOrders();
+	
+	public  List<Orders> getAllOrders();
 }

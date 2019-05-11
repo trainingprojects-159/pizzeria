@@ -2,14 +2,14 @@ package com.mphasis.pizzeria.daos;
 
 import java.util.List;
 
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 
 
 
 public interface OrderDao {
-	public  void createOrder(Order order);
-	public void updateOrder(Order order);
+	public  void createOrder(Orders order);
+	public void updateOrder(Orders order);
 	public void deleteOrder(String orderid);
-	public void acceptOrder(String orderid);
-	public  List<Order> getAllOrders();
+	
+	public  List<Orders> getAllOrders();
 }

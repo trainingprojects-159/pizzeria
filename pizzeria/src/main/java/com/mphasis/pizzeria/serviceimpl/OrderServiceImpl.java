@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mphasis.pizzeria.daos.OrderDao;
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.services.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -17,11 +17,11 @@ OrderDao orderDao;
 	this.orderDao = orderDao;
 }
 
-	public void insertOrder(Order order) {
+	public void insertOrder(Orders order) {
 		orderDao.createOrder(order);
 	}
 
-	public void editOrder(Order order) {
+	public void editOrder(Orders order) {
 		orderDao.updateOrder(order);
 	}
 
@@ -30,12 +30,8 @@ OrderDao orderDao;
 
 	}
 
-	public void getOrder(String orderid) {
-		orderDao.acceptOrder(orderid);
-
-	}
-
-	public List<Order> getAllOrders() {
+	
+	public List<Orders> getAllOrders() {
 		
 		return orderDao.getAllOrders();
 	}

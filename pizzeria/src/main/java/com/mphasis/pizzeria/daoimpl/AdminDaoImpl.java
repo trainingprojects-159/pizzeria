@@ -1,10 +1,13 @@
 package com.mphasis.pizzeria.daoimpl;
 
 import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.mphasis.pizzeria.daos.AdminDao;
@@ -25,12 +28,12 @@ public class AdminDaoImpl implements AdminDao {
 	public Admin login(String username, String password) {
 		Session session=(sessionFactory).openSession();
 		
-	Query query= session.createQuery("from Admin where username=:username and password=:password");
+	
+		TypedQuery<Admin> query=session.createQuery("from Admin where username=:username and password=:password");
 		query.setParameter("username", username);
 		query.setParameter("password",password);
-		Admin admin=(Admin) query.uniqueResult();
-	     return admin;
-		
+		Admin admin=(Admin) query.getSingleResult();
+	     return admin;		
 	}
 	
 	

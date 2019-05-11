@@ -32,7 +32,7 @@ ShoppingCartDao shoppingCartDao;
 
 	}
 
-	public List<ShoppingCart> getAllCarts() {
+	public List<ShoppingCart> getShoppingCarts() {
 		
 		return shoppingCartDao.getAllCarts();
 	}

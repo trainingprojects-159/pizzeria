@@ -14,10 +14,6 @@ private String password;
 
 @OneToMany(mappedBy="admin", fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 private  List<PizzaStore> pizzaStore;
-
-@OneToMany(mappedBy="admin",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-private List<Order> order;
-
 public String getUsername() {
 	return username;
 }
@@ -36,12 +32,7 @@ public List<PizzaStore> getPizzaStore() {
 public void setPizzaStore(List<PizzaStore> pizzaStore) {
 	this.pizzaStore = pizzaStore;
 }
-public List<Order> getOrder() {
-	return order;
-}
-public void setOrder(List<Order> order) {
-	this.order = order;
-}
+
 
 
 }

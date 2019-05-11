@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.pizzeria.entities.Customer;
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.entities.ShoppingCart;
 import com.mphasis.pizzeria.entities.Toppings;
@@ -121,13 +121,13 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/orders",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Order> listOrders()
+	public List<Orders> listOrders()
 	{	
 		return orderService.getAllOrders();
     }
 	
 	@RequestMapping(value="/orders/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void  addOrder(@RequestBody Order order)
+	public void  addOrder(@RequestBody Orders order)
 	{
 			this.orderService.insertOrder(order);			
 	}
@@ -139,7 +139,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editOrder(@RequestBody Order order){
+	public void editOrder(@RequestBody Orders order){
 		this.orderService.editOrder(order);	
 	}
 

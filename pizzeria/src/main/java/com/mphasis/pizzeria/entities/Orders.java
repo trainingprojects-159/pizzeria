@@ -16,7 +16,7 @@ import com.mphasis.pizzeria.util.StringPrefixedSequenceIdGenerator;
 
 
 @Entity
-public class Order {
+public class Orders {
 @Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderid_seq")
     @GenericGenerator(
@@ -27,24 +27,27 @@ public class Order {
             @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "OI"),
             @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 private String orderid;
-@ManyToOne
-@JoinColumn(name="username")
-private Admin admin;
+
+private double order_cost;
 
 @ManyToOne
-@JoinColumn(name="cartid")
 private ShoppingCart shoppingCart;
 
 @ManyToOne
-@JoinColumn(name="storeid")
 private PizzaStore pizzaStore;
 
-@OneToMany(mappedBy="order",cascade=CascadeType.ALL)
-private List<PizzaItems> pizzaItems; 
+@ManyToOne
+@JoinColumn(name="pizzaid")
+private PizzaItems pizzaItems;
+
+
 
 @ManyToOne
-@JoinColumn(name="custid")
 private Customer customer;
+
+
+
+private String status;
 
 public String getOrderid() {
 	return orderid;
@@ -54,13 +57,7 @@ public void setOrderid(String orderid) {
 	this.orderid = orderid;
 }
 
-public Admin getAdmin() {
-	return admin;
-}
 
-public void setAdmin(Admin admin) {
-	this.admin = admin;
-}
 
 public ShoppingCart getShoppingCart() {
 	return shoppingCart;
@@ -78,17 +75,9 @@ public void setPizzaStore(PizzaStore pizzaStore) {
 	this.pizzaStore = pizzaStore;
 }
 
-public List<PizzaItems> getPizzaItems() {
-	return pizzaItems;
-}
-
-public void setPizzaItems(List<PizzaItems> pizzaItems) {
-	this.pizzaItems = pizzaItems;
-}
 
 
 
-private String status;
 
 public Customer getCustomer() {
 	return customer;
@@ -104,6 +93,14 @@ public String getStatus() {
 
 public void setStatus(String status) {
 	this.status = status;
+}
+
+public double getOrder_cost() {
+	return order_cost;
+}
+
+public void setOrder_cost(double order_cost) {
+	this.order_cost = order_cost;
 }
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,32 +20,24 @@ public class Customer {
 	private String email;
 	private long phoneno;
 	private String password;
-	@OneToOne
-	@JoinColumn(name="cartid")
-	private ShoppingCart shoppingCart;
 	
-	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<PizzaItems> pizzaItems;
 	
 	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
-	private List<Order> order;
+	private List<Orders> order;
 	
-	public ShoppingCart getShoppingCart() {
-		return shoppingCart;
-	}
-	public void setShoppingCart(ShoppingCart shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
+	
 	public List<PizzaItems> getPizzaItems() {
 		return pizzaItems;
 	}
 	public void setPizzaItems(List<PizzaItems> pizzaItems) {
 		this.pizzaItems = pizzaItems;
 	}
-	public List<Order> getOrder() {
+	public List<Orders> getOrder() {
 		return order;
 	}
-	public void setOrder(List<Order> order) {
+	public void setOrder(List<Orders> order) {
 		this.order = order;
 	}
 	public String getCustid() {

@@ -36,13 +36,12 @@ public class PizzaStore {
 	private String city;
 	private String state;
 	private String password;
-
+	private String manager_name;
 	@ManyToOne
-	@JoinColumn(name= "username")
 	private Admin admin;
 	
 	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)
-	private List<Order> order;
+	private List<Orders> order;
 	
 	@OneToMany(mappedBy="pizzaStore",cascade=CascadeType.ALL)
 	private List<PizzaItems> pizzaItems;
@@ -59,10 +58,10 @@ public class PizzaStore {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	public List<Order> getOrder() {
+	public List<Orders> getOrder() {
 		return order;
 	}
-	public void setOrder(List<Order> order) {
+	public void setOrder(List<Orders> order) {
 		this.order = order;
 	}
 
@@ -96,6 +95,12 @@ public class PizzaStore {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getManager_name() {
+		return manager_name;
+	}
+	public void setManager_name(String manager_name) {
+		this.manager_name = manager_name;
 	}
 	
 

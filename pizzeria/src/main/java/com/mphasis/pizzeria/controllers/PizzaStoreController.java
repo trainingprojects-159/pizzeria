@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaItems;
 import com.mphasis.pizzeria.services.OrderService;
 import com.mphasis.pizzeria.services.PizzaItemsService;
@@ -74,7 +74,7 @@ public class PizzaStoreController {
 //	}
 
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
-	public void editOrder(@RequestBody Order o)
+	public void editOrder(@RequestBody Orders o)
 	{
 		this.orderService.editOrder(o);
 		

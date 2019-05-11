@@ -14,7 +14,6 @@ public class Toppings {
 	private String toppingname;
 
 	@ManyToOne
-	@JoinColumn(name="pizzaid")
 	private PizzaItems pizzaItems;
 
 

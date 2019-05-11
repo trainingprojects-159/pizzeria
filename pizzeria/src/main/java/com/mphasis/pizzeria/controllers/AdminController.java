@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mphasis.pizzeria.entities.Admin;
-import com.mphasis.pizzeria.entities.Order;
+import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaStore;
 import com.mphasis.pizzeria.services.AdminService;
 import com.mphasis.pizzeria.services.OrderService;
@@ -46,6 +46,7 @@ public class AdminController {
 	  
 	@RequestMapping(value="/login/{username}/{password}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Admin login(@PathVariable("username")String pname,@PathVariable("password")String pwd) {
+		
 		Admin user=adminService.login(pname,pwd);
 		return user;
 	}
@@ -81,7 +82,7 @@ public class AdminController {
 	
 	  
 	  @RequestMapping(value="/order",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-	  public List<Order> listOrders()
+	  public List<Orders> listOrders()
 	  {	
 		  return orderService.getAllOrders();
 	  }
@@ -92,7 +93,7 @@ public class AdminController {
 	  }
 
 	  @RequestMapping(value="/order/edit",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
-	  public void updateOrder(@RequestBody Order order) {
+	  public void updateOrder(@RequestBody Orders order) {
 		  this.orderService.editOrder(order);	
 	  }
 
