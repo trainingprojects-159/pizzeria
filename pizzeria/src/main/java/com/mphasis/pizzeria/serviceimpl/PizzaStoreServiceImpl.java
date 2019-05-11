@@ -42,6 +42,16 @@ PizzaStoreDao pizzaStoreDao;
 		return pizzaStoreDao.getAllPizzaStore();
 	}
 
+	public PizzaStore getByStoreId(String storeid) {
+		
+		return pizzaStoreDao.getByStoreId(storeid);
+	}
+
+	public PizzaStore getByManagerName(String manager_name) {
+		
+		return pizzaStoreDao.getByManagerName(manager_name);
+	}
+
 	
 
 }

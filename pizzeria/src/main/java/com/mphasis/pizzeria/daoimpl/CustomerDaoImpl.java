@@ -1,8 +1,6 @@
  package com.mphasis.pizzeria.daoimpl;
 
 import javax.persistence.TypedQuery;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -26,7 +24,6 @@ public void setSessionFactory(SessionFactory sessionFactory)
 	
 	public Customer login(String custid, String password) {
 		Session session=sessionFactory.openSession();
-
 		TypedQuery<Customer> query=session.createQuery("from Customer where custid=:custid and password=:password");
 		query.setParameter("custid", custid);
 		query.setParameter("password", password);
@@ -40,6 +37,15 @@ public void setSessionFactory(SessionFactory sessionFactory)
 		session.save(customer);
 		tr.commit();
 		
+	}
+
+
+	public Customer getByCustId(String custid) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		Customer customer=(Customer) session.get(Customer.class, custid);
+		  tr.commit();
+		return customer;
 	}
 
 }

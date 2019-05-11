@@ -10,6 +10,8 @@ public interface PizzaStoreService {
 	public void addPizzaStore(PizzaStore pizzastore);
 	public void editPizzaStore(PizzaStore pizzastore);
 	public void removePizzaStore(String storeid);
+	public PizzaStore getByStoreId(String storeid);
+	public PizzaStore getByManagerName(String manager_name);
 	public  List<PizzaStore> getAllPizzaStore();
 	
 }

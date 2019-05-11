@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.OrderDao;
 import com.mphasis.pizzeria.entities.Orders;
+
 @Repository
 
 public class OrderDaoImpl implements OrderDao {
@@ -51,9 +52,18 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public List<Orders> getAllOrders() {
-		Session session=(sessionFactory).openSession();
+		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		 List<Orders> order=session.createCriteria(Orders.class).list();
+		 List<Orders> order=session.createQuery("from Orders",Orders.class).list();
+		  tr.commit();
+		return order;
+		
+	}
+
+	public Orders getByOrderId(String orderid) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		  Orders order=(Orders) session.get(Orders.class, orderid);
 		  tr.commit();
 		return order;
 		

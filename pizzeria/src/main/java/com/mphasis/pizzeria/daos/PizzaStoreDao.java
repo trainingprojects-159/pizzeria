@@ -11,6 +11,8 @@ public interface PizzaStoreDao {
 	public void insertPizzaStore(PizzaStore pizzastore);
 	public void updatePizzaStore(PizzaStore pizzastore);
 	public void deletePizzaStore(String storeid);
+	public PizzaStore getByStoreId(String storeid);
+	public PizzaStore getByManagerName(String manager_name);
 	public  List<PizzaStore> getAllPizzaStore();
 	
 }

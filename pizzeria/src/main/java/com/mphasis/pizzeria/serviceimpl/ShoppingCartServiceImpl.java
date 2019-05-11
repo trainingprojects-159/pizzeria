@@ -37,4 +37,9 @@ ShoppingCartDao shoppingCartDao;
 		return shoppingCartDao.getAllCarts();
 	}
 
+	public ShoppingCart getByCartId(String cartid) {
+		
+		return shoppingCartDao.getByCartId(cartid);
+	}
+
 }

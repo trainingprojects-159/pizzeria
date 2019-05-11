@@ -39,7 +39,7 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 	public void deletePizzaItems(String pizzaid) {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		PizzaStore pizzaItems=(PizzaStore) session.get(PizzaStore.class, pizzaid);
+		PizzaItems pizzaItems=(PizzaItems) session.get(PizzaItems.class, pizzaid);
 		  session.delete(pizzaItems);
 		  tr.commit();
 
@@ -48,9 +48,17 @@ public class PizzaItemsDaoImpl implements PizzaItemsDao {
 	public List<PizzaItems> getAllPizzaItems() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		 List<PizzaItems> pizzaitems = session.createCriteria(PizzaStore.class).list();
+		 List<PizzaItems> pizzaitems = session.createQuery("from PizzaItems",PizzaItems.class).list();
 		  tr.commit();
 		return pizzaitems;
+		
+	}
+	public PizzaItems getById(String pizzaid) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		PizzaItems pizzaItems=(PizzaItems) session.get(PizzaItems.class, pizzaid);
+		  tr.commit();
+		return pizzaItems;
 		
 	}
 }

@@ -25,5 +25,10 @@ CustomerDao customerDao;
 		
 	}
 
+	public Customer getByCustId(String custid) {
+		
+		return customerDao.getByCustId(custid);
+	}
+
 	
 }

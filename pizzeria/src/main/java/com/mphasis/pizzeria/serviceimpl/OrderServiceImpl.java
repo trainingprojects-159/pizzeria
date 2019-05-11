@@ -36,4 +36,11 @@ OrderDao orderDao;
 		return orderDao.getAllOrders();
 	}
 
+	public Orders getByOrderId(String orderid) {
+	
+		return orderDao.getByOrderId(orderid);
+	}
+
+	
+
 }

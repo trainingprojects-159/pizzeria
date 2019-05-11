@@ -8,5 +8,6 @@ public interface ToppingService {
 	public void addTopping(Toppings topping);
 	 public void editTopping(Toppings topping);
 	 public void removeTopping(String toppingid);
+	 public Toppings getByToppingId(String toppingid);
 	 public List<Toppings> getAllToppings();
 }

@@ -22,7 +22,7 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 		this.sessionFactory=sessionFactory;
 	}	
 	public PizzaStore login(String storeid, String password) {
-		Session session=(sessionFactory).openSession();
+		Session session=sessionFactory.openSession();
 		
 		Query query= session.createQuery("from PizzaStore where storeid=:storeid and password=:password");
 			query.setParameter("storeid", storeid);
@@ -57,11 +57,26 @@ public class PizzaStoreDaoImpl implements PizzaStoreDao {
 
 	}
 	public List<PizzaStore> getAllPizzaStore() {
-		Session session=(sessionFactory).openSession();
+		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		 List<PizzaStore> pizzastores=session.createCriteria(PizzaStore.class).list();
+		 List<PizzaStore> pizzastores=session.createQuery("from PizzaStore",PizzaStore.class).list();
 		  tr.commit();
 		return pizzastores;
+	}
+	public PizzaStore getByStoreId(String storeid) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		PizzaStore pizzaStore=(PizzaStore) session.get(PizzaStore.class, storeid);
+		  tr.commit();
+		return pizzaStore;
+		
+	}
+	public PizzaStore getByManagerName(String manager_name) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		PizzaStore pizzaStore=(PizzaStore) session.get(PizzaStore.class, manager_name);
+		  tr.commit();
+		return pizzaStore;
 	}
 	
 

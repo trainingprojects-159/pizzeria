@@ -39,5 +39,9 @@ public class ToppingServiceImpl implements ToppingService {
 	 
 		return toppingDao.getAllToppings();
 	}
+	public Toppings getByToppingId(String toppingid) {
+		
+		return toppingDao.getByToppingId(toppingid);
+	}
 
 }

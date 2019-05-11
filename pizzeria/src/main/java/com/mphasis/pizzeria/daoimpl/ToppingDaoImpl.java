@@ -47,12 +47,19 @@ public class ToppingDaoImpl implements ToppingDao{
 	}
 
 	public List<Toppings> getAllToppings() {
-		Session session=(sessionFactory).openSession();
+		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		 List<Toppings> toppings=session.createCriteria(Toppings.class).list();
+		 List<Toppings> toppings=session.createQuery("from Toppings",Toppings.class).list();
 		  tr.commit();
 		return toppings;
 		
+	}
+	public Toppings getByToppingId(String toppingid) {
+		Session session=sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		Toppings toppings=(Toppings) session.get(Toppings.class, toppingid);
+		  tr.commit();
+		return toppings;
 	}
 
 }

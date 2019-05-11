@@ -8,5 +8,6 @@ public interface ToppingDao {
 	 public void insertTopping(Toppings topping);
 	 public void updateTopping(Toppings topping);
 	 public void deleteTopping(String toppingid);
+	 public Toppings getByToppingId(String toppingid);
 	 public List<Toppings> getAllToppings();
 }

@@ -29,4 +29,11 @@ PizzaItemsDao pizzaItemsDao;
 		return pizzaItemsDao.getAllPizzaItems();
 	}
 
+	public PizzaItems getById(String pizzaid) {
+		
+		return pizzaItemsDao.getById(pizzaid);
+	}
+
+	
+
 }
