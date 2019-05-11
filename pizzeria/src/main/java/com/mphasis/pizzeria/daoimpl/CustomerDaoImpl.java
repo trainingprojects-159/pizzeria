@@ -1,4 +1,4 @@
-package com.mphasis.pizzeria.daoimpl;
+ package com.mphasis.pizzeria.daoimpl;
 
 import javax.persistence.TypedQuery;
 
@@ -24,12 +24,12 @@ public void setSessionFactory(SessionFactory sessionFactory)
 }
 
 	
-	public Customer login(String username, String password) {
+	public Customer login(String custid, String password) {
 		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		TypedQuery<Customer> query=session.createQuery("from Customer where username=:uname and password=:pass");
-		query.setParameter("uname", username);
-		query.setParameter("pass", password);
+
+		TypedQuery<Customer> query=session.createQuery("from Customer where custid=:custid and password=:password");
+		query.setParameter("custid", custid);
+		query.setParameter("password", password);
 		Customer customer=(Customer) query.getSingleResult();
 		return customer;
 	}

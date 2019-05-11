@@ -23,7 +23,6 @@ import com.mphasis.pizzeria.entities.Toppings;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@EnableTransactionManagement
 @ComponentScan(basePackages = "com.mphasis.pizzeria.*")
 public class AppConfig {
 @Bean
@@ -60,12 +59,6 @@ public class AppConfig {
 		
 	}
 	
-	@Bean
-	public HibernateTransactionManager getHibernateTransactionManger(SessionFactory s) {
-		HibernateTransactionManager hibernateTransactionManager=new HibernateTransactionManager();
-		hibernateTransactionManager.setSessionFactory(s);
-		return hibernateTransactionManager;
-	}
 	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {

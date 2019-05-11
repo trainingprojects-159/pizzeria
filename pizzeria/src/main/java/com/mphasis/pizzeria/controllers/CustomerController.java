@@ -72,25 +72,26 @@ public class CustomerController {
 		this.customerService.register(customer);
 	}
 	
-	@RequestMapping(value="/shoppingcarts",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/shoppingcart",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<ShoppingCart> listShoppingCarts()
 	{	
+		System.out.println("shopping cart data"+shoppingCartService.getShoppingCarts());
 		return shoppingCartService.getShoppingCarts();
     }
 	
-	@RequestMapping(value="/shoppingCart/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/shoppingcart/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void  addToCart(@RequestBody ShoppingCart c)
 	{
 			this.shoppingCartService.addToCart(c);		
 	}
 	
-	@RequestMapping(value="/shoppingCart/{cartid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/shoppingcart/{cartid}",method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void removeToCart(@PathVariable("cartid")String cartid)
 	{
 			this.shoppingCartService.removeToCart(cartid);		
 	}
 	
-	@RequestMapping(value="/shoppingCart/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/shoppingcart/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void updateToCart(@RequestBody ShoppingCart c)
 	{
 		this.shoppingCartService.editToCart(c);	

@@ -49,9 +49,9 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 	public List<ShoppingCart> getAllCarts() {
 		Session session=sessionFactory.openSession();
 		Transaction tr=session.beginTransaction();
-		 List<ShoppingCart> shoppingcart = session.createCriteria(ShoppingCart.class).list();
+		 List<ShoppingCart> shoppingcart = session.createQuery("from ShoppingCart",ShoppingCart.class).list();
 		  tr.commit();
-		return null;
+		return shoppingcart;
 	}
 
 }

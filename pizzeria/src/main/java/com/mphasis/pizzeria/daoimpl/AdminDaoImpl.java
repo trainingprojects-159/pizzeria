@@ -27,8 +27,6 @@ public class AdminDaoImpl implements AdminDao {
 	
 	public Admin login(String username, String password) {
 		Session session=(sessionFactory).openSession();
-		
-	
 		TypedQuery<Admin> query=session.createQuery("from Admin where username=:username and password=:password");
 		query.setParameter("username", username);
 		query.setParameter("password",password);
