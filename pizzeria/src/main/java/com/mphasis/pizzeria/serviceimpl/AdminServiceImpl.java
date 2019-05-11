@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mphasis.pizzeria.daos.AdminDao;
 import com.mphasis.pizzeria.entities.Admin;
 import com.mphasis.pizzeria.entities.PizzaStore;
+import com.mphasis.pizzeria.exception.BusinessException;
 import com.mphasis.pizzeria.services.AdminService;
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -18,7 +19,7 @@ AdminDao adminDao;
 	this.adminDao = adminDao;
 }
 
-	public Admin login(String username, String password) {
+	public Admin login(String username, String password)throws BusinessException {
 		
 		return adminDao.login(username, password);
 	}

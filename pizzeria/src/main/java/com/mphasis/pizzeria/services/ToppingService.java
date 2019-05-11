@@ -3,11 +3,12 @@ package com.mphasis.pizzeria.services;
 import java.util.List;
 
 import com.mphasis.pizzeria.entities.Toppings;
+import com.mphasis.pizzeria.exception.BusinessException;
 
 public interface ToppingService {
-	public void addTopping(Toppings topping);
-	 public void editTopping(Toppings topping);
-	 public void removeTopping(String toppingid);
-	 public Toppings getByToppingId(String toppingid);
-	 public List<Toppings> getAllToppings();
+	public void addTopping(Toppings topping)throws BusinessException;
+	 public void editTopping(Toppings topping)throws BusinessException;
+	 public void removeTopping(String toppingid)throws BusinessException;
+	 public Toppings getByToppingId(String toppingid)throws BusinessException;
+	 public List<Toppings> getAllToppings()throws BusinessException;
 }
