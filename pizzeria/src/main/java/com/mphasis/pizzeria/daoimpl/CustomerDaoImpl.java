@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mphasis.pizzeria.daos.CustomerDao;
 import com.mphasis.pizzeria.entities.Customer;
+import com.mphasis.pizzeria.exception.BusinessException;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao{
@@ -22,12 +23,13 @@ public void setSessionFactory(SessionFactory sessionFactory)
 }
 
 	
-	public Customer login(String custid, String password) {
+	public Customer login(String custid, String password)throws BusinessException {
 		Session session=sessionFactory.openSession();
 		TypedQuery<Customer> query=session.createQuery("from Customer where custid=:custid and password=:password");
 		query.setParameter("custid", custid);
 		query.setParameter("password", password);
 		Customer customer=(Customer) query.getSingleResult();
+		if(customer==null) throw new BusinessException("customer is not present");
 		return customer;
 	}
 
