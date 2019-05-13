@@ -10,28 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mphasis.pizzeria.entities.Admin;
 import com.mphasis.pizzeria.entities.Orders;
 import com.mphasis.pizzeria.entities.PizzaItems;
+import com.mphasis.pizzeria.entities.PizzaStore;
 import com.mphasis.pizzeria.exception.BusinessException;
 import com.mphasis.pizzeria.services.OrderService;
 import com.mphasis.pizzeria.services.PizzaItemsService;
+import com.mphasis.pizzeria.services.PizzaStoreService;
 
 @RestController
 @RequestMapping("/pizzastore")
 public class PizzaStoreController {
 	
 	
+	@Autowired 
+	PizzaStoreService pizzaStoreService;
 	
 	@Autowired
 	PizzaItemsService pizzaItemsService;
-
+	@Autowired
+	OrderService orderService;
 	
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+	public void setPizzaStoreService(PizzaStoreService pizzaStoreService) {
+		this.pizzaStoreService = pizzaStoreService;
+	}
+
 
 	public void setPizzaItemsService(PizzaItemsService pizzaItemsService)throws BusinessException {
 		this.pizzaItemsService = pizzaItemsService;
 	}
 
-
+	@RequestMapping(value="/login/{storeid}/{password}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	public PizzaStore login(@PathVariable("storeid")String storeid,@PathVariable("password")String password) throws BusinessException {
+		
+		PizzaStore user=pizzaStoreService.login(storeid, password);
+		return user;
+	}
 	@RequestMapping(value="/pizzaitems",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<PizzaItems> listPizzaItems()throws BusinessException
 	{
@@ -39,6 +57,7 @@ public class PizzaStoreController {
 		return pizzaItemsService.getAllPizzaItems();
 		
 	}
+	
 	@RequestMapping(value="/pizzaitems/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 
 		public void  addPizzaItems(@RequestBody PizzaItems pi)throws BusinessException
@@ -65,10 +84,7 @@ public class PizzaStoreController {
 	  	return this.pizzaItemsService.getById(pizzaid);
 	  }
 	
-	@Autowired
-	OrderService orderService;
 	
-
 	@RequestMapping(value="/orders/edit",method=RequestMethod.PUT,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void editOrder(@RequestBody Orders o)throws BusinessException
 	{
