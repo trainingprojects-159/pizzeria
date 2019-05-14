@@ -174,12 +174,12 @@ public class CustomerController {
 	public  List<PizzaItems> listPizzaItems() throws BusinessException{
 			return pizzaItemsService.getAllPizzaItems();
 	}
-	@RequestMapping(value="/pizzaItems/{pizzaid}", method=RequestMethod.GET)
-	  public PizzaItems getByPizzaId(@PathVariable("pizzaid")String pizzaid) throws BusinessException
-	  {
-	  	
-	  	return this.pizzaItemsService.getById(pizzaid);
-	  }
+//	@RequestMapping(value="/pizzaItems/{pizzaid}", method=RequestMethod.GET)
+//	  public PizzaItems getByPizzaId(@PathVariable("pizzaid")String pizzaid) throws BusinessException
+//	  {
+//	  	
+//	  	return this.pizzaItemsService.getById(pizzaid);
+//	  }
 	
 }
 
