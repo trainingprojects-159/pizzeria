@@ -29,7 +29,8 @@ public void setSessionFactory(SessionFactory sessionFactory)
 		query.setParameter("custid", custid);
 		query.setParameter("password", password);
 		Customer customer=(Customer) query.getSingleResult();
-		if(customer==null) throw new BusinessException("customer is not present");
+		if(customer==null) 
+		throw new BusinessException("customer is not present");
 		return customer;
 	}
 
