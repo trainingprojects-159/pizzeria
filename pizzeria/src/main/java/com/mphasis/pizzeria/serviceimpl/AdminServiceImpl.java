@@ -16,9 +16,9 @@ AdminDao adminDao;
 }
 	public Admin login(String username, String password)throws BusinessException {
 		Admin admin = null;
-		if(username != null && username.matches("[a-zA-Z]{4,15}"))
+		if(username != null && username.matches("[a-zA-Z0-9]{4,15}@gmail.com"))
 		{
-			if(password != null && password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,10}$"))
+			if(password != null && password.matches("[0-9]{4,10}"))
 			{
 				admin=adminDao.login(username, password);
 			}
@@ -27,7 +27,7 @@ AdminDao adminDao;
 			}
 		}
 		else {
-			throw new BusinessException("Entered email " + username + " is invalid");
+			throw new BusinessException("Entered username " + username + " is invalid");
 		}
 		return admin;
 	}

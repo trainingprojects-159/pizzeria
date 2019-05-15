@@ -31,8 +31,8 @@ public class AdminDaoImpl implements AdminDao {
 		query.setParameter("password",password);
 		Admin admin=(Admin) query.getSingleResult();
 		if(admin==null)
-		throw new BusinessException("object not created");
-	     return admin;		
+	throw new BusinessException("object not created");
+     return admin;		
 	}
 	
 	
