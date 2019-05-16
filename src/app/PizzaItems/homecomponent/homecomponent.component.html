@@ -1,0 +1,19 @@
+<form>
+
+  <div style="padding: 20px;">
+    <h2 style="color: blue">Welcome {{PizzaItems}}</h2>
+    <nav>
+      <a routerLink="pizzaitems-details" 
+      class="btn btn-primary active" 
+      role="button" routerLinkActive="active">PizzaItems list</a>
+
+
+      <a routerLink="eidtorder" 
+      class="btn btn-primary active" 
+      role="button" routerLinkActive="active">Order Status</a>
+
+
+     </nav>
+    <router-outlet></router-outlet>
+  </div>
+</form>

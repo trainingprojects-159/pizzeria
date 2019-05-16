@@ -1,0 +1,54 @@
+<html>
+
+  <form  #pizzaItemsForm="ngForm" (ngSubmit)="savePizzaItems()">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add PizzaItems</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <Label for="pizzaid">Pizza Id</Label>
+                    <input type="text" name="pizzaid" [(ngModel)]="pizzaitem.pizzaid" >
+                  </div>
+                  <br/><br/>
+                  <div class="form-group">
+                      <label for="pizzaname">Pizza Name</label>
+                      <input type="text" name="pname" [(ngModel)]="pizzaitem.pizzaname">
+                      </div>
+                      <br/><br/>
+                      <div class="form-group">
+                          <label for="pizzaprice">Pizza Price</label>
+                          <input type="text" name="price" [(ngModel)]="pizzaitem.pizzaprice">
+                          </div>
+                          <br/><br/>
+                          <div class="form-group">
+                              <label for="pizzatype">Pizza Type</label>&nbsp;&nbsp;&nbsp;
+                              <label class="radio-inline">
+                            <input type="radio" name="pizzatype" value="Veg" [(ngModel)]="pizzaitem.pizzatype">Veg
+                            </label> 
+                            <label class="radio-inline">
+                            <input type="radio" name="pizzatype" value="Non-Veg" [(ngModel)]="pizzaitem.pizzatype">Non-Veg
+                            </label>
+                            </div>
+                            <br/><br/>
+                            <div >
+                                <!-- <div  class="form-group"  [class.has-error]="pizzastore.touched && pizzastore.ivalid">
+                                   
+                                        <label for="Pizzastore">Pizza Store</label>
+                                        <select id="pizzastore" required #pizzastore="ngModel" name="pizzastore" [(ngModel)]="pizzaitem.pizzastores.storeid"
+                                        class="form-control" >
+                                    <option value="-1">Select-PizzaStore</option>
+                                    <option *ngFor="let pizzastore of pizzastores" [value]="pizzastore.storeid">
+                                        {{pizzastore.storeid}}
+                                    </option>
+                                    </select>
+                                </div> -->
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                              </div>
+                              </div>
+                              </div>
+                              </form>
+
+  
+</html>

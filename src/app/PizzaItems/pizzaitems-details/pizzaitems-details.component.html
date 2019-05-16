@@ -1,0 +1,42 @@
+
+  <table border="1">
+
+    <tr>
+   
+    <th>Pizza Id</th>
+   
+    <th>Pizza Name</th>
+   
+    <th>Pizza Price</th>
+   
+    <th>Pizza Type</th>
+   
+    </tr>
+   
+    <tr *ngFor='let pizzaitem of pizzaitems'>
+   
+    <td>{{pizzaitem.pizzaid}}</td>
+   
+    <td>{{pizzaitem.pizzaname}}</td>
+   
+    <td>{{pizzaitem.pizzatype}}</td>
+   
+    <td>{{pizzaitem.pizzaprice}}</td>
+   
+
+   
+    <td>{{pizzaitem.toppings.toppingid}}</td>
+   
+ 
+   
+    
+   <td><button class="btn btn-danger" (click)="editPizzaItems(pizzaitem.pizzaid)">EDIT</button></td>
+
+
+    <td> <button class="btn btn-danger" (click)="deletePizzaItems(pizzaitem.pizzaid)">DELETE</button></td>
+   
+    </tr>
+   
+    </table>
+   
+    <a routerLink='/home/addpizzaitem'>Add Pizzaitem</a>
